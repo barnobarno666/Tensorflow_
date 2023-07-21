@@ -1,0 +1,42 @@
+import pygame
+import pymunk
+screen=pygame.display.set_mode((800,800))
+space=pymunk.Space()
+space.gravity=(0,98)
+def ball(space):
+    body=pymunk.Body(body_type=pymunk.Body.STATIC)
+    body.position=400,400
+    body.shape=pymunk.Circle(body,10)
+    space.add(body, body.shape)
+    return body.shape 
+
+screen.blit(pygame.image.load('background.png'),(0,0))
+playerpoX=0
+playerpoY=0
+while  True:
+    for event in pygame.event.get():
+        if event.type==pygame.QUIT:
+            pygame.quit()
+            exit()
+    
+        if event.type==pygame.KEYDOWN:
+            screen.blit(pygame.image.load('background.png'),(0,0))
+            if event.key==pygame.K_LEFT or event.key==pygame.K_a:
+                playerpoX-=10
+            if event.key==pygame.K_RIGHT or event.key==pygame.K_d:
+                playerpoX+=10
+            if event.key==pygame.K_UP or event.key==pygame.K_w:
+                playerpoY-=10
+            if event.key==pygame.K_DOWN or event.key==pygame.K_s:
+                playerpoY+=10
+                
+    
+    
+    for _ in range(10):
+        screen.blit(pygame.image.load('enemy.png'),(playerpoX+1,playerpoY-1))
+            #space.step(1/60 )
+        pygame.display.update()
+
+    pygame.display.update()
+    #bal=ball(space)         
+    
