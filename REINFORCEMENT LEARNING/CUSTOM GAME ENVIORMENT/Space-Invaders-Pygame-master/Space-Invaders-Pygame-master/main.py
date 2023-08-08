@@ -78,7 +78,7 @@ def game_over_text():
 
 
 def player(x, y):
-    screen.blit(playerImg, (x, y))
+    screen.blit(pygame.image.load('enemy.png'), (x, y))
     pass
 
 def enemy(x, y, i):
